@@ -2,7 +2,7 @@
 //  fish.c
 //  FishSwim
 //
-//  Created by Felix on 10/17/17.
+//  Created by Felix 
 //  Copyright © 2017 Felix. All rights reserved.
 //
 
@@ -41,7 +41,7 @@ int main()
         
         int * plocation = findPellet();
         if(plocation == 0) {
-            sleep(1);
+              sleep(1);
             continue;
         }
         int x = *plocation;
@@ -49,7 +49,7 @@ int main()
         
         
         while(eat(x,y) == false /* and while the pellet is still in the river*/) {
-              sleep(1);
+               sleep(1);
             
              plocation = findPellet();
             if(plocation == 0) {
@@ -68,7 +68,7 @@ int main()
                 moveFishLeft();
             }
         }
-          sleep(1);
+          // sleep(1); < -- comment that out for trials. REMEMBER!
        
     }
     
@@ -96,11 +96,14 @@ bool eat(int x, int y) {
     //if(x == (river_height-1) && y == current) {
     if((*swim_mill)[mill_height-2][fish_current] == 'p') {
         (*swim_mill)[mill_height-1][fish_current] = fish; //make sure fish isn't overridden
+        
+       
+        
         return true;
     }
     
      
-        
+
         
     return false;
 }

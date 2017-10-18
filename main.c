@@ -2,7 +2,7 @@
 //  main.c
 //  FishSwim
 //
-//  Created by Felix on 10/17/17.
+//  Created by Felix 
 //  Copyright © 2017 Felix. All rights reserved.
 //
 
@@ -150,6 +150,7 @@ void createMemory()
     }
     
     // Attach shared memory ID to data space
+    
     /*
          shmat is used to attach the shared memory segment with the shared memory identifier
          specified by sharedmemID.
