@@ -20,6 +20,7 @@
 #include <signal.h>
 
 
+
 //constants
 const char water = '~', fish ='f';
 
@@ -32,7 +33,8 @@ char (*swim_mill)[mill_height][mill_length];
 const key_t key = 5678;
 int sharedMemoryID;
 
-
+//file for writing results into.
+const FILE *fp;
 
 void attachMemory()
 {

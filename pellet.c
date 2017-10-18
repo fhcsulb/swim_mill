@@ -18,7 +18,7 @@
 #include <signal.h>
 #include <time.h>
 
-void *pellet_thread(void *loc);
+void *pellet_thread(int *);
 void endProcess();
 
 
@@ -33,6 +33,7 @@ int main()
     printf("Pellet memory has been attachd ! \n");
     
     srand(time(NULL));
+    
     
     pthread_t pellet[10];
     
@@ -50,57 +51,44 @@ int main()
    
 }
 
-void *pellet_thread(void *loc)
+void *pellet_thread(int *loc)
 {
-    // Pellet location
-    int r = *((int *)loc);
-    int c = *((int *)loc+1);
-    int x = 0;
+    int x = *loc;
+    int y = *(loc+1);
     
-    // Places pellet thread inside array
-    // printf("\nPellet %d created R: %d C: %d\n", (int)pthread_self(), r, c);
-    (*swim_mill)[r][c] = 'p';
-    sleep(1);
+    //drop pellet
+    (*swim_mill)[x][y] = 'p';
     
-    for(int row = r; row < 10; row++){
-        // Find the current location of the fish
-        for(x = 0; x < 10; x++){
-            if((*swim_mill)[9][x] == fish){
-                break;
-            }
-        }
-        
-        // Pellet flows with stream from row 9 > 0
-        if (row < 9){
-            (*swim_mill)[row][c] = water;
-            (*swim_mill)[row+1][c] = 'p';
-            
-        }
-        
-        // If F and Pellet are in same location it is eaten.
-        else if(row == 9){
-            if ((*swim_mill)[row][c] == fish){
-               (*swim_mill)[row][c] = fish;
-                //printf("\nPellet %d was eaten at Col: %d!\n", (int)pthread_self(), c);
-                
-                
-                pthread_exit(0);
-                break;
-            }else{
-                (*swim_mill)[row][c] = water;
-                
-                // printf("\nPellet %d left at Col: %d!\n", (int)pthread_self(), c);
-            }
-        }
+    // move the pellet down the river
+    while(x < (mill_height-1)) {
         sleep(1);
+        // update previous pellet location
+        (*swim_mill)[x][y] = water;
+        
+        //move pellet down river
+        x++;
+        if((*swim_mill)[x][y] != fish) {
+            (*swim_mill)[x][y] = 'p';
+        }
     }
-    pthread_exit(0);
+    
+    sleep(1);
+    if((*swim_mill)[x][y] != fish) {
+        (*swim_mill)[x][y] = water;
+    }
+    
+    return 0;
 }
 
 // Kill and end process
 // Detach shared memory
 void endProcess(){
     printf("\nPellet killed because time limit reached. PID %d\n", getpid());
+    
+    fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
+    fprintf(fp, "\nPellet killed because time limit reached. PID %d\n", getpid());
+    fclose(fp);
+    
     shmdt(swim_mill);
     exit(0);
 }
