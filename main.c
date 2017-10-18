@@ -39,6 +39,7 @@ int main(int argc, const char * argv[])
     // write into the file. This is the signal that the swim mill simulation is about to begin!
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
     fprintf(fp, "Swim Mill Simulation\n");
+    fprintf(fp, "\nPID %d swim mill executing \n", getpid());
     fclose(fp);
     
     //printf("Swim Mill has begun\n");
@@ -90,6 +91,8 @@ int main(int argc, const char * argv[])
                 printf("%d seconds remaining\n", seconds);
                 sleep(1);
                 printRiver();
+                
+                
                 
             }
             // call to end swim mill because 30 seconds is up !

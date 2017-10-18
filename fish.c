@@ -23,10 +23,10 @@ int fish_current = (mill_length/2);
 
 int main()
 {
-    printf("PID %d (fish) executing\n\n", getpid());
+    printf("PID %d fish executing\n\n", getpid());
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "PID %d (fish) executing\n\n", getpid());
+    fprintf(fp, "PID %d fish executing\n", getpid());
     fclose(fp);
     
     signal(SIGUSR1, endProcess);
@@ -68,7 +68,8 @@ int main()
                 moveFishLeft();
             }
         }
-          // sleep(1); < -- comment that out for trials. REMEMBER!
+          // sleep(1); < -- commented that out for trials. REMEMBER!
+       
        
     }
     
