@@ -58,7 +58,7 @@ void *pellet_thread(void *loc)
     int x = 0;
     
     // Places pellet thread inside array
-    printf("\nPellet %d created R: %d C: %d\n", (int)pthread_self(), r, c);
+    // printf("\nPellet %d created R: %d C: %d\n", (int)pthread_self(), r, c);
     (*swim_mill)[r][c] = 'p';
     sleep(1);
     

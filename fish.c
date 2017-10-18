@@ -43,6 +43,16 @@ int main()
         
         while(eat(x,y) == false /* and while the pellet is still in the river*/) {
              sleep(1);
+            
+             plocation = findPellet();
+            if(plocation == 0) {
+                sleep(1);
+                continue;
+            }
+            x = *plocation;
+            y = *(plocation+1);
+            
+            
             // use position of pellet to determine where the fish goes
             if(y > fish_current) { // fish is to the left of pellet
                 moveFishRight();
@@ -62,11 +72,12 @@ int main()
 int * findPellet() {
     
     static int loc[2];
-    for(int ii=0; ii < mill_height; ii++) {
+    for(int ii=9; ii >= 0; ii--) {
         for(int jj=0; jj < mill_length; jj++ ) {
             if((*swim_mill)[ii][jj] == 'p') {
                 loc[0] = ii;
                 loc[1] = jj; 
+                
                 return loc;
             }
         }
