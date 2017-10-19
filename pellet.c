@@ -44,7 +44,7 @@ int main()
     // create pthread array
     pthread_t pellets[20];
     
-    // Create 10 random threads
+    // Create 20 random threads
     for(int i = 0; i < 20; i++){
         int position[2] = {0, rand()%10};// Generates the pellet position
         pthread_create(&pellets[i], NULL, pellet_thread, position);

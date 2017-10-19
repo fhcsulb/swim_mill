@@ -65,7 +65,7 @@ int main(int argc, const char * argv[])
     {
        // execute ./fish
         static char *argv[] = {"","",NULL};
-        execv("fish",argv);
+        execv("./fish",argv);
     }
     
     else
@@ -91,6 +91,7 @@ int main(int argc, const char * argv[])
                 printf("%d seconds remaining\n", seconds);
                 sleep(1);
                 printRiver();
+                
                 
                 
                 

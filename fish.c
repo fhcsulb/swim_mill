@@ -31,7 +31,6 @@ int main()
     
     signal(SIGUSR1, endProcess);
    
-    
     //attach process to shared memory
     attachMemory();
     
@@ -48,8 +47,9 @@ int main()
         int y = *(plocation+1);
         
         
-        while(eat(x,y) == false /* and while the pellet is still in the river*/) {
-               sleep(1);
+        while(eat(x,y) == false ) /* and while the pellet is still in the river*/ {
+            sleep(1);
+            
             
              plocation = findPellet();
             if(plocation == 0) {
