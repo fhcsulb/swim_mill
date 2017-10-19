@@ -28,7 +28,7 @@ int main()
     printf("PID %d pellet executing\n", getpid());
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "PID %d pellet executing\n\n", getpid());
+    fprintf(fp, "PID %d pellet executing\n", getpid());
     fclose(fp);
     
     //signal setup
