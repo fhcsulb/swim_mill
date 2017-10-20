@@ -31,7 +31,7 @@ int main()
     fprintf(fp, "PID %d pellet executing\n", getpid());
     fclose(fp);
     
-    //signal setup
+    // signal setup
     signal(SIGUSR1, endProcess);
     
     // attach process to memory.
