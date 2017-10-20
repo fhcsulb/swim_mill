@@ -182,7 +182,7 @@ void endProcess() {
     printf("\nswim mill process exited because time limit reached. PID %d\n", getpid());
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "\nswim mill process exited because time limit reached. PID %d\n", getpid());
+    fprintf(fp, "\nSwimMill killed because time limit reached. PID %d\n", getpid());
     fclose(fp);
     
     exit(0);

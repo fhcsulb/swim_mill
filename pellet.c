@@ -76,7 +76,8 @@ void *pellet_thread(int *loc)
     (*swim_mill)[x][y] = 'p';
     
     // move the pellet down the river
-    while(x < (mill_height-1)) {
+    while(x < (mill_height-1))
+    {
         sleep(1);
         
         // update previous pellet location
@@ -84,7 +85,8 @@ void *pellet_thread(int *loc)
         
         //move pellet down river
         x++;
-        if((*swim_mill)[x][y] != fish) {
+        if((*swim_mill)[x][y] != fish)
+        {
             (*swim_mill)[x][y] = 'p';
         }
     }
@@ -96,6 +98,7 @@ void *pellet_thread(int *loc)
     if((*swim_mill)[x][y] != fish) {
         (*swim_mill)[x][y] = water;
     }
+   
     
     return 0;
 }

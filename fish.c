@@ -85,6 +85,7 @@ int main()
           // sleep(1); < -- commented that out for trials. REMEMBER!
        
        
+       
     }
     
     
@@ -160,7 +161,7 @@ void endProcess(){
     // Kill processes time limit
     printf("\nFish killed because time limit reached. PID %d \n", getpid());
     
-     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
+    fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
     fprintf(fp, "\nFish killed because time limit reached. PID %d \n", getpid());
     fclose(fp);
     
