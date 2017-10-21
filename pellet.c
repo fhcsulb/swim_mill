@@ -25,7 +25,6 @@ void endProcess();
 
 int main()
 {
-    
     printf("PID %d pellet executing\n", getpid());
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
@@ -107,7 +106,7 @@ void *pellet_thread(int *loc)
 // Kill and end process
 // Detach shared memory
 void endProcess(){
-    printf("\nPellet killed because time limit reached. PID %d\n", getpid());
+    printf("Pellet killed because time limit reached. PID %d\n", getpid());
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
     fprintf(fp, "Pellet killed because time limit reached. PID %d\n", getpid());

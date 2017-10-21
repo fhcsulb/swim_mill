@@ -2,7 +2,7 @@
 //  main.c
 //  FishSwim
 //
-//  Created by Felix 
+//  Created by Felix
 //  Copyright © 2017 Felix. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ int main(int argc, const char * argv[])
     fclose(fp);
     
     // signal set-up.
-     signal(SIGINT, endProcess);
+    signal(SIGINT, endProcess);
     
     
     // write into the file. This is the signal that the swim mill simulation is about to begin!
@@ -103,7 +103,7 @@ int main(int argc, const char * argv[])
     }
     
     
-
+    
     return 0;
     
 }
@@ -118,7 +118,7 @@ void initRiver()
             (*swim_mill)[i][j] = water;
         }
     }
-     
+    
 }
 
 //function call to print the river.
@@ -142,12 +142,12 @@ void createMemory()
 {
     // Create shared memory ID segment
     /*
-       shmget is used to allocate a shared memory segment. shmget returns the identifier of the
-       shared memory segment
+     shmget is used to allocate a shared memory segment. shmget returns the identifier of the
+     shared memory segment
      parameters: key to access shared memory segment
-                 size of the shared memory segment
-                 IPC_CREAT to create a new shared memory segment.
-    */
+     size of the shared memory segment
+     IPC_CREAT to create a new shared memory segment.
+     */
     
     if((sharedMemoryID = shmget(key, sizeof(swim_mill), IPC_CREAT | 0666)) < 0) {
         perror("shmget error");
@@ -157,10 +157,10 @@ void createMemory()
     // Attach shared memory ID to data space
     
     /*
-         shmat is used to attach the shared memory segment with the shared memory identifier
-         specified by sharedmemID.
+     shmat is used to attach the shared memory segment with the shared memory identifier
+     specified by sharedmemID.
      
-         if shmat returns -1, then there was an error attaching shared memory.
+     if shmat returns -1, then there was an error attaching shared memory.
      
      */
     if ((swim_mill = shmat(sharedMemoryID, NULL, 0)) == (char *) -1) {
@@ -173,9 +173,9 @@ void createMemory()
 // function call to end all processes.
 void endProcess() {
     //Kill child processes
-     kill(pelletID, SIGUSR1);
+    kill(pelletID, SIGUSR1);
     kill(fishID, SIGUSR1);
-   
+    
     
     //Detach and deallocate shared memory
     shmdt(swim_mill);
