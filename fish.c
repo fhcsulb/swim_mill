@@ -16,6 +16,7 @@ int * findPellet();
 bool eat(int, int);
 void moveFishRight();
 void moveFishLeft();
+void killProcess();
 
 // declare a variable for the fish's current position.
 int fish_current = (mill_length/2);
@@ -32,6 +33,7 @@ int main()
     
     // signal setup
     signal(SIGUSR1, endProcess);
+    signal(SIGINT, killProcess);
    
     //attach process to shared memory
     attachMemory();
@@ -157,7 +159,8 @@ void moveFishLeft()
 
 // Kill and end process
 // Detach shared memory
-void endProcess(){
+void endProcess()
+{
     // Kill processes time limit
     printf("\nFish killed because time limit reached. PID %d \n", getpid());
     
@@ -167,6 +170,17 @@ void endProcess(){
     
     shmdt(swim_mill);
     exit(0);
+}
+
+void killProcess()
+{
+    // Kill processes time limit
+    printf("\nFish killed because CTRL + C \n");
+    
+    fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
+    fprintf(fp, "\nFish killed because CTRL + C\n");
+    fclose(fp);
+    exit(1);
 }
 
 

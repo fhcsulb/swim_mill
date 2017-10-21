@@ -10,6 +10,7 @@
 #include <stdio.h>
 
 // declare the prototypes
+void killProcess();
 void createMemory();
 void initRiver();
 void printRiver();
@@ -33,7 +34,8 @@ int main(int argc, const char * argv[])
     fclose(fp);
     
     // signal set-up.
-    signal(SIGINT, endProcess);
+    signal(SIGUSR1, endProcess);
+    signal(SIGINT, killProcess);
     
     
     // write into the file. This is the signal that the swim mill simulation is about to begin!
@@ -188,4 +190,24 @@ void endProcess() {
     fclose(fp);
     
     exit(0);
+}
+
+void killProcess()
+{
+    //Kill child processes
+    kill(pelletID, SIGINT);
+    kill(fishID, SIGINT);
+    
+    
+    //Detach and deallocate shared memory
+    shmdt(swim_mill);
+    shmctl(sharedMemoryID, IPC_RMID, 0);
+    
+    printf("\nswim mill process exited because CTRL + C\n");
+    
+    fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
+    fprintf(fp, "\nswim mill process exited because CTRL + C\n");
+    fclose(fp);
+    
+    exit(1);
 }

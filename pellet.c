@@ -20,6 +20,7 @@
 
 void *pellet_thread(int *);
 void endProcess();
+void killProcess();
 
 
 
@@ -33,6 +34,7 @@ int main()
     
     // signal setup
     signal(SIGUSR1, endProcess);
+    signal(SIGINT, killProcess);
     
     // attach process to memory.
     attachMemory();
@@ -115,5 +117,19 @@ void endProcess(){
     shmdt(swim_mill);
     exit(0);
 }
+
+void killProcess()
+{
+    printf("\nPellet killed because CTRL + C\n");
+    
+    fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
+    fprintf(fp, "Pellet killed because CTRL + C\n");
+    fclose(fp);
+    
+    shmdt(swim_mill);
+    exit(1);
+}
+
+
 
 
