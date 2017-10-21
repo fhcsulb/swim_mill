@@ -84,7 +84,7 @@ int main()
                 moveFishLeft();
             }
         }
-          // sleep(1); < -- commented that out for trials. REMEMBER!
+           // sleep(1); < -- commented that out for trials. REMEMBER!
        
        
        
@@ -178,7 +178,7 @@ void killProcess()
     printf("\nFish killed because CTRL + C \n");
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "\nFish killed because CTRL + C\n");
+    fprintf(fp, "\nFish killed because CTRL + C. PID %d\n",getpid());
     fclose(fp);
     exit(1);
 }

@@ -123,7 +123,7 @@ void killProcess()
     printf("\nPellet killed because CTRL + C\n");
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "Pellet killed because CTRL + C\n");
+    fprintf(fp, "Pellet killed because CTRL + C. PID %d\n",getpid());
     fclose(fp);
     
     shmdt(swim_mill);

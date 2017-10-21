@@ -77,6 +77,7 @@ int main(int argc, const char * argv[])
         pelletID = fork();
         if(pelletID == 0)
         {
+            
             //execute ./pellet
             static char *argv[] = {"","",NULL};
             execv("./pellet", argv);
@@ -206,7 +207,7 @@ void killProcess()
     printf("\nswim mill process exited because CTRL + C\n");
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "\nswim mill process exited because CTRL + C\n");
+    fprintf(fp, "\nswim mill process exited because CTRL + C. PID %d\n",getpid());
     fclose(fp);
     
     exit(1);
