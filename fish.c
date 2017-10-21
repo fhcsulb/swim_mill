@@ -2,7 +2,7 @@
 //  fish.c
 //  FishSwim
 //
-//  Created by Felix 
+//  Created by Felix
 //  Copyright © 2017 Felix. All rights reserved.
 //
 
@@ -32,7 +32,7 @@ int main()
     
     // signal setup
     signal(SIGUSR1, endProcess);
-   
+    
     //attach process to shared memory
     attachMemory();
     
@@ -48,7 +48,7 @@ int main()
         // if the value returned is 0, this means that the fish does not detect
         // any pellets in the river.
         if(pelletLocation == 0) {
-              sleep(1);
+            sleep(1);
             continue;
         }
         
@@ -62,7 +62,7 @@ int main()
             sleep(1);
             
             
-             pelletLocation = findPellet();
+            pelletLocation = findPellet();
             if(pelletLocation == 0) {
                 sleep(1);
                 continue;
@@ -82,15 +82,15 @@ int main()
                 moveFishLeft();
             }
         }
-          // sleep(1); < -- commented that out for trials. REMEMBER!
-       
-       
-       
+        // sleep(1); < -- commented that out for trials. REMEMBER!
+        
+        
+        
     }
     
     
 }
-  
+
 // function to find the location of the nearest pellet to the fish.
 // start from the bottom row of the river and traverse up till the top row
 // the nearest pellet will be the one that is closest to the bottom of the river.
@@ -113,7 +113,7 @@ int * findPellet()
             }
         }
     }
-     return 0;
+    return 0;
 }
 
 // this is a function to check if the fish can eat.
@@ -130,7 +130,7 @@ bool eat(int x, int y)
         return true;
     }
     
-
+    
     return false;
 }
 
@@ -168,5 +168,4 @@ void endProcess(){
     shmdt(swim_mill);
     exit(0);
 }
-
 

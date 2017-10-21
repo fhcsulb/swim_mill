@@ -63,7 +63,7 @@ int main(int argc, const char * argv[])
     fishID = fork();
     if(fishID == 0)
     {
-       // execute ./fish
+        // execute ./fish
         static char *argv[] = {"","",NULL};
         execv("./fish",argv);
     }
@@ -101,6 +101,7 @@ int main(int argc, const char * argv[])
             
         }
     }
+    
     
 
     return 0;
@@ -172,8 +173,9 @@ void createMemory()
 // function call to end all processes.
 void endProcess() {
     //Kill child processes
+     kill(pelletID, SIGUSR1);
     kill(fishID, SIGUSR1);
-    kill(pelletID, SIGUSR1);
+   
     
     //Detach and deallocate shared memory
     shmdt(swim_mill);
