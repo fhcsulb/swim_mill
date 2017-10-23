@@ -26,6 +26,7 @@ void killProcess();
 
 int main()
 {
+    
     printf("PID %d pellet executing\n", getpid());
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
@@ -71,7 +72,7 @@ void *pellet_thread(int *loc)
     int y = *(loc+1);
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "Pellet has been created in column %d \n",y);
+    fprintf(fp, "Pellet %d has been created in column %d \n",(int)pthread_self(),y);
     fclose(fp);
     
     // place the pellet into the river.
@@ -123,7 +124,7 @@ void killProcess()
     printf("\nPellet killed because CTRL + C\n");
     
     fp = fopen("/Users/Felix/Desktop/CECS_326/FishSwim/swimmill_output.txt", "a");
-    fprintf(fp, "Pellet killed because CTRL + C. PID %d\n",getpid());
+    fprintf(fp, "\nPellet killed because CTRL + C. PID %d\n",getpid());
     fclose(fp);
     
     shmdt(swim_mill);

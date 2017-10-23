@@ -20,6 +20,10 @@
 #include <signal.h>
 
 
+// these are the process IDs for fish and pellet.
+// pid_t represents process IDs. Retrieve process IDs by calling getpid
+pid_t fishID;
+pid_t pelletID;
 
 // set constant characters. water is represented by a '~' and fish is represented by a 'f'
 const char water = '~', fish ='f';

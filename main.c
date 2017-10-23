@@ -19,10 +19,7 @@ void endProcess();
 // set TIME to 30 because that is how long the program is meant to run for.
 int TIME = 30;
 
-// these are the process IDs for fish and pellet.
-// pid_t represents process IDs. Retrieve process IDs by calling getpid
-pid_t fishID;
-pid_t pelletID;
+
 
 
 int main(int argc, const char * argv[])
@@ -70,8 +67,10 @@ int main(int argc, const char * argv[])
         execv("./fish",argv);
     }
     
+    
     else
     {
+        
         // call to fork the pellet process
         // fork will return a the value of 0 if the process was successfully created.
         pelletID = fork();
@@ -81,14 +80,16 @@ int main(int argc, const char * argv[])
             //execute ./pellet
             static char *argv[] = {"","",NULL};
             execv("./pellet", argv);
+            
         }
         
         else
         {
+            
             // for 30 seconds, print the state of the river.
             // by the time printRiver() is called here, the fish
             // process should already be forked.
-            for(int seconds = TIME; seconds >= 0; seconds--)
+            for(int seconds = TIME; seconds > 0; seconds--)
             {
                 
                 printf("%d seconds remaining\n", seconds);
